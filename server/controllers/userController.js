@@ -38,8 +38,9 @@ const loginUser = async (req, res) => {
             const username = user.username
             const fullname = user.fullname
             const _id = user._id
+            const profileImage  = user.profileImage
 
-            return res.status(200).json({ email, username, fullname, token, _id })
+            return res.status(200).json({ email, username, fullname, token, _id , profileImage })
 
         } catch (error) {
             return res.status(400).json({ error: error.message })

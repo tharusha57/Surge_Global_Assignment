@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { useState } from 'react'
 import { useRegister } from '../hooks/useRegister'
 import ReCAPTCHA from "react-google-recaptcha";
@@ -15,7 +15,7 @@ const Register = () => {
   const [profileImage, setProfileImage] = useState('')
   const [uploaded , setUploaded] = useState(false)
   const [pwError , setPwError] = useState('')
-
+  const reRef = useRef()
   const { register, error , isLoading} = useRegister()
 
   const onChange = (value) => {
@@ -42,6 +42,7 @@ const Register = () => {
 
     if (password === reapeatPassword) {
       await register(email, username, fullname, password, token, profileImage)
+      reRef.current.reset()
     }else{
       setPwError('Passwords do not match')
     }
@@ -55,7 +56,7 @@ const Register = () => {
 
   return (
     <div className='container'>
-      <div className='container-left'>
+      <div className='container-left register-left'>
         <form className="container-left-form-login" onSubmit={handleSubmit}>
           <h3>REGISTER</h3>
 
@@ -87,7 +88,7 @@ const Register = () => {
             onChange={(e) => setreapeatPassword(e.target.value)}
           />
 
-          <label htmlFor='file-upload' className='custom-file-upload'><a href=''>Upload Profile image {uploaded ? <CheckIcon className='upload-icon'/> :<PublishRoundedIcon className='upload-icon' />}</a></label>
+          <label htmlFor='file-upload' className='custom-file-upload'><a>Upload Profile image {uploaded ? <CheckIcon className='upload-icon'/> :<PublishRoundedIcon className='upload-icon' />}</a></label>
           <input
             type='file'
             label='image'
@@ -101,9 +102,10 @@ const Register = () => {
           <div className='captcha'> <ReCAPTCHA
             sitekey={'6LcOzyokAAAAAHaBP1OiWx9ivSoal5FlV19BRNsS'}
             onChange={onChange}
+            ref={reRef}
           /></div>
         
-          <button disabled={isLoading}>Register</button>
+          <button disabled={isLoading}>{isLoading ? 'Processing...' : 'Register'}</button>
 
           <a href='/login'>Already have an Account?</a>
         </form>

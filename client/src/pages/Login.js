@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { useLogin } from '../hooks/useLogin'
 import ReCAPTCHA from "react-google-recaptcha";
 
@@ -6,7 +6,7 @@ function Login() {
   const [emailOrPassword, setEmailOrPassword] = useState('')
   const [password, setPassword] = useState('')
   const [token, setToken] = useState('')
-
+  const reRef = useRef()
   const { login, error, isLoading } = useLogin()
 
   const onChange = (value) => {
@@ -16,6 +16,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     await login(emailOrPassword, password, token)
+    reRef.current.reset()
   }
 
   return (
@@ -23,7 +24,6 @@ function Login() {
       <div className='container-left'>
         <form className="container-left-form-login" onSubmit={handleSubmit}>
           <h3>LOGIN</h3>
-
           <label>Email or Username : </label>
           <input
             value={emailOrPassword}
@@ -40,9 +40,10 @@ function Login() {
           <div className='captcha'> <ReCAPTCHA
             sitekey={'6LcOzyokAAAAAHaBP1OiWx9ivSoal5FlV19BRNsS'}
             onChange={onChange}
+            ref={reRef}
           /></div>
 
-          <button disabled={isLoading}>Login</button>
+          <button disabled={isLoading}>k</button>
 
           <a href='/register'>Don't Have an Account yet?</a>
         </form>

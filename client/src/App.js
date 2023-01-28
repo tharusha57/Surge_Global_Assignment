@@ -24,7 +24,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route
-            path='/'
+            path='/home'
             element={ user ? <Home /> : <Login />}
           />
           <Route
