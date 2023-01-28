@@ -7,25 +7,24 @@ import { useAuthContext } from "./hooks/useAuthContext";
 
 function App() {
 
-  const {user , dispatch} = useAuthContext()
+  const { user, dispatch } = useAuthContext()
 
-  useEffect(()=> {
+  useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'))
-
-    if(user){
-        dispatch({type : 'LOGIN' , payload : user})
-    }else{
-      dispatch({type : 'LOGOUT'})
+    if (user) {
+      dispatch({ type: 'LOGIN', payload: user })
+    } else {
+      dispatch({ type: 'LOGOUT' })
     }
-  } , [])
-  
+  }, [user])
+
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
           <Route
-            path='/home'
-            element={ user ? <Home /> : <Login />}
+            exact path='/home'
+            element={user ? <Home /> : <Login />}
           />
           <Route
             path='/login'
