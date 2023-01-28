@@ -1,5 +1,6 @@
 import React from 'react'
 import logo from '../assets/lighting.png'
+import userImage from '../assets/user.png'
 import Post from '../components/Post'
 import { useAuthContext } from '../hooks/useAuthContext'
 import { useLogout } from '../hooks/useLogout'
@@ -32,7 +33,7 @@ const Home = () => {
         </div>
         <div className='home-user'>
           <div className='home-user-details'>
-            <div className='dp'><img src={user.profileImage} alt='' /></div>
+            <div className='dp'><img src={user.profileImage ? user.profileImage: userImage} alt='' /></div>
             <h3>{user.fullname}</h3>
             <h4>@{user.username}</h4>
             <button onClick={logoutUser} className='logout-button'>Logout</button>
