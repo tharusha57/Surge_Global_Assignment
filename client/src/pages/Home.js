@@ -12,16 +12,16 @@ const Home = ()  => {
   const {logout} = useLogout()
   const {isLoading} = useFetchData('/v1/posts')
   const { posts } = usePostContext()
-
+  
   const logoutUser = () => {
     logout()
   }
-  console.log(posts)
+  console.log(user)
   return (
     <>
       { isLoading ? <h1>loading</h1> : <div className='home'>
       <div className='home-logo'>
-        <img src={logo} alt=''/>
+        <img src={logo} alt=''/> <span className='logo-name'>Flashstagram</span>
       </div>
       <div className='home-posts'>
 

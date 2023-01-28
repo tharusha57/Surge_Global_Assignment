@@ -18,7 +18,6 @@ export const useLogin = () => {
             const response = await axios.post('/v1/user/login', { emailOrUsername, password, token })
 
             localStorage.setItem('user', JSON.stringify(response.data))
-
             dispatch({ type: 'LOGIN', payload: response.data })
             setIsLoading(false)
             setError(null)
