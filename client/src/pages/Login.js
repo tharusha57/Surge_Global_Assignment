@@ -43,7 +43,7 @@ function Login() {
             ref={reRef}
           /></div>
 
-          <button disabled={isLoading}>k</button>
+          <button disabled={isLoading}>{isLoading ? 'Processing...' : 'Login'}</button>
 
           <a href='/register'>Don't Have an Account yet?</a>
         </form>
