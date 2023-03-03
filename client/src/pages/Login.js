@@ -50,9 +50,7 @@ function Login() {
       </div>
       <div className='container-right'>
         <div className='container-right-details'>
-          <h1>Surge SE Internship</h1>
-          <h2>March 2023</h2>
-          <h3>THARUSHA GEETHANJANA</h3>
+          <h1>Social Media App</h1>
           {error && <div className='error'>
             <h4>{error}</h4>
           </div>}
